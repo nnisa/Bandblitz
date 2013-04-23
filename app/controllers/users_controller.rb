@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def new
@@ -15,17 +16,20 @@ class UsersController < ApplicationController
   end
 
  def index
-    @users = User.paginate(page: params[:page])
+  @users = User.paginate(page: params[:page])
   end
 
-  def create
+def create
     @user = User.new(params[:user])
     if @user.save
+      sign_in @user
+      flash[:success] = "Welcome to BandBlitz!"
       redirect_to @user
-    else
+else
       render 'new'
     end
-end
+end 
+
 
 
    def destroy
@@ -50,10 +54,10 @@ end
     def signed_in_user
       unless signed_in?
         store_location
-        redirect_to signin_url, notice: "Please sign in."
+        redirect_to login_url, notice: "Please sign in." unless signed_in?
       end
     end
-
+    
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)

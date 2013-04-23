@@ -11,16 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130419151310) do
+ActiveRecord::Schema.define(:version => 20130423201949) do
+
+  create_table "bands", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "playing_next"
+    t.date     "when_playing_next"
+    t.string   "photo"
+    t.string   "song"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "bands_users", :id => false, :force => true do |t|
+    t.integer "band_id"
+    t.integer "user_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "admin",           :default => false
   end
 
 end
