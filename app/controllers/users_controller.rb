@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :edit, :update, :destory]
+
+  before_filter :signed_in_user, only: [:edit, :update, :destroy]
   before_filter :correct_user,   only: [:edit, :update]
+  before_filter :admin_user,     only: [:index, :destroy]
 
 
   def show
@@ -35,8 +37,8 @@ end
    def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed."
-    redirect_to root_path
-    #redirect_to users_path
+    #redirect_to root_path
+    redirect_to users_path
   end
 
   def update
@@ -54,15 +56,25 @@ end
     def signed_in_user
       unless signed_in?
         store_location
-        redirect_to login_url, notice: "Please sign in." unless signed_in?
+        redirect_to login_url, notice: "Please sign in."
       end
     end
     
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
+      flash[:error] = "Unauthorized"
     end
+
     def admin_user
-      redirect_to(root_path) unless current_user.admin?
+      if signed_in?
+        redirect_to(root_path) unless current_user.admin?
+      else 
+      redirect_to(root_path)
     end
+  end 
 end
+
+
+
+

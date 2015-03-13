@@ -1,2 +1,32 @@
-<h1>Bands#index</h1>
-<p>Find me in app/views/bands/index.html.erb</p>
+<% provide(:title, 'All Bands') %>
+<h1>Listing Bands</h1>
+
+<%= will_paginate %>
+
+<% if !current_user.admin? %>
+
+<ul class="bands">
+	<% list_bands(current_user).each do |band| %>
+		<li>
+			<td><%= link_to band.name, band %> <% link_to band %></td>
+			<%= link_to "delete", band, method: :delete, data: { confirm: "You sure?" } %>
+	    	<%= link_to "edit", edit_band_path(band), class: "btn btn-large btn-primary" %>
+		</li>
+	<% end %> 
+</ul>
+
+<% else %>
+
+<ul class="users">
+	<% @bands.each do |band| %>
+		<li>
+			<td><%= link_to band.name, band %> <% link_to band %></td>
+			<%= link_to "delete", band, method: :delete, data: { confirm: "You sure?" } %>
+	    	<%= link_to "edit", edit_band_path(band), class: "btn btn-large btn-primary" %>
+		</li>
+	<% end %> 
+</ul>
+
+<% end %>
+
+<%= will_paginate %>

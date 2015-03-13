@@ -1,18 +1,17 @@
 BandBlitz::Application.routes.draw do
-  get "bands/new"
-
-  get "bands/show"
-
-  get "bands/index"
-
-  get "bands/edit"
 
   resources :users
   resources :sessions,   only: [:new, :create, :destroy]
+  resources :bands 
+  resources :genres
+
+  match '/newband', to: 'bands#new'
+
+
 
   match '/signup',  to: 'users#new'
   match '/login',  to: 'sessions#new'
-  match '/logout', to: 'sessions#destroy'
+  match '/logout', to: 'sessions#destroy', via: :delete
 
   match '/home', :to => "static_pages#home"
   match '/about', :to => "static_pages#about"

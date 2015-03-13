@@ -1,14 +1,30 @@
+<% provide(:title, 'Home') %>
+
+<%= link_to "Signup", signup_path, class: "btn btn-large btn-primary" %>
+
+<%= will_paginate @bands %>
+
+<% if signed_in? %>
+
+<ul class="bands">
+	<% list_bands(current_user).each do |band| %>
+		<li>
+			<td><%= link_to band.name, band %> <% link_to band %></td>
+		</li>
+	<% end %> 
+</ul>
+
+<% else %>
+
+<ul class="users">
+	<% @bands.each do |band| %>
+		<li>
+			<td><%= link_to band.name, band %> <% link_to band %></td>
+		</li>
+	<% end %> 
+</ul>
+
+<% end %>
 
 
-<div class="center hero-unit">
-    <h1> Home </h1>
-    <h2>
-      This is the home page for the
-      <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-      sample application.
-    </h2>
-
-    <%= link_to "Sign up now!", signup_path, 
-                                class: "btn btn-large btn-primary" %>
-
-                            </div>
+<%= will_paginate @bands %>

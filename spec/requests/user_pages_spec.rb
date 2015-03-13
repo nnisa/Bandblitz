@@ -15,7 +15,7 @@ describe "User pages" do
   
         describe "should send you back to root" do
           before {visit users_path}
-          it {should have_selector('title', text: 'BandBlitz')}
+          it {should have_selector('title', text: 'The Bands of BandBlitz')}
   
           describe "after signing in as a regular user" do
             before do
@@ -23,7 +23,7 @@ describe "User pages" do
               visit users_path
             end
             it "should send you back to root" do
-              page.should have_selector('title', text: 'BandBlitz')
+              page.should have_selector('title', text: 'The Bands of BandBlitz')
             end
           end
         end
@@ -46,7 +46,7 @@ describe "User pages" do
 
           it "should list each user" do
             User.paginate(page: 1).each do |user|
-              page.should have_selector('li', text: user.name)
+              page.should have_selector('td>a', text: user.name)
             end
           end      
         end

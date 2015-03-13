@@ -5,17 +5,17 @@ FactoryGirl.define do
     password "foobar"
     password_confirmation "foobar"
 
-     factory :admin do
-       admin true
-     end
+    factory :admin do
+      admin true
+    end
   end
 
-  # factory :genre do
-  #   sequence(:name)  { |n| "Genre #{n}" }
-  # end
+  factory :genre do
+    sequence(:name)  { |n| "Genre #{n}" }
+  end
   
-  # factory :band do
-  #   sequence(:name)  { |n| "BandName #{n}" }
-  #   description "Cool Band"
-  # end
+  factory :band do
+    sequence(:name)  { |n| "BandName #{n}" }
+    description "Cool Band"
+  end
 end

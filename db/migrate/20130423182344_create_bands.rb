@@ -7,6 +7,7 @@ class CreateBands < ActiveRecord::Migration
       t.date :when_playing_next
       t.string :photo
       t.string :song
+      t.string :genre_ids
 
       t.timestamps
     end

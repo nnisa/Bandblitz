@@ -56,8 +56,8 @@ describe "Authentication" do
         it { should have_link('Profile', href: user_path(admin))}
         it { should have_link('Logout',    href: logout_path) }
         it { should have_link('Users',    href: users_path) }
-        #it { should have_link('Bands',    href: bands_path) }
-        #it { should have_link('Genres',    href: genres_path) }
+        it { should have_link('Bands',    href: bands_path) }
+        it { should have_link('Genres',    href: genres_path) }
       
   
         describe "followed by signout" do
@@ -97,7 +97,7 @@ describe "Authentication" do
               end
   
               it "should render the default page" do
-                page.should have_selector('title', text: 'BandBlitz')
+                page.should have_selector('title', text: 'The Bands of BandBlitz')
               end
             end
           end
@@ -135,7 +135,7 @@ describe "Authentication" do
         describe "visiting Users#edit page" do
           before { visit edit_user_path(wrong_user) }
           it { should_not have_selector('title', text: 'Update Profile') }
-          it { should have_selector('title', text: "BandBlitz")}
+          it { should have_selector('title', text: "The Bands of BandBlitz")}
         end
       end
     end
@@ -149,7 +149,7 @@ describe "Authentication" do
   
         describe "submitting a DELETE request to the Users#destroy action" do
           before { delete user_path(user) }
-          it { should have_selector('title', text: 'BandBlitz')}
+          it { should have_selector('title', text: 'The Bands of BandBlitz')}
         end
       end
     end

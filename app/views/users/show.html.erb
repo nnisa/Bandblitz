@@ -3,7 +3,7 @@
   <aside class="span4">
     <section>
 		<h1>
-			<%= gravatar_for @user %>
+			<%= link_to "Create Band", newband_path, class: "btn btn-large btn-primary" %>
 			<%= @user.name %> 
 		</h1>
     </section>

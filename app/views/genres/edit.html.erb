@@ -1,0 +1,18 @@
+<% provide(:title, 'Update Genre') %>
+<h1>Editing Genre</h1>
+
+<%= form_for(@genre, :html => {:multipart => true}) do |f| %>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@genre) do |f| %>
+    <%= render 'layouts/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.submit "Update", class: "btn btn-large btn-primary" %>
+  <% end %>
+  </div>
+</div>
+<% end %>

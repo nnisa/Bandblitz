@@ -1,2 +1,21 @@
-<h1>Bands#show</h1>
-<p>Find me in app/views/bands/show.html.erb</p>
+<% provide(:title, @band.name) %> 
+<div class="row">
+  <aside class="span4">
+    <section>
+		<h1>
+			<%= @band.name %> 
+		</h1>
+    </section>
+  </aside>
+</div>
+
+
+<%= @band.description %>
+
+<% unless @band.photo_url.nil? %>
+      <p><%= image_tag @band.photo_url %></p>
+<% end %>
+
+<% unless @band.song_url.nil? %>
+      <p><%= link_to @band.song_url, @band.song_url %></p>
+<% end %>

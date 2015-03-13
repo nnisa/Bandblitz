@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= full_title(yield(:title)) %></title>
+    <% if yield(:title)=="Home" %>
+    <title>The Bands of BandBlitz</title>
+    <% else %>
+    <title>The Bands of BandBlitz | <%= yield(:title) %> </title>
+    <% end %>
+
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>

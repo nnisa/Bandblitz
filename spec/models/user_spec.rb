@@ -126,15 +126,15 @@ describe User do
    end
    
 
-  # describe "band associations" do    
-  #   it "should have the right number of bands" do
-  #     @band_manager = User.create(name: "Example Manager", email: "manager@example.com", password: "foobar", password_confirmation: "foobar")
+  describe "band associations" do    
+    it "should have the right number of bands" do
+      @band_manager = User.create(name: "Example Manager", email: "manager@example.com", password: "foobar", password_confirmation: "foobar")
       
-  #     5.times do |n|
-  #         @band_manager.bands << Band.create(name: "Band_#{n}")
-  #     end
-  #     @band_manager.bands.count == 5
-  #   end
-  # end 
+      5.times do |n|
+          @band_manager.bands << Band.create(name: "Band_#{n}")
+      end
+      @band_manager.bands.count == 5
+    end
+  end 
 end
 end

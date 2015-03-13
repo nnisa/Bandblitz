@@ -1,0 +1,17 @@
+<% provide(:title, 'All Genres') %>
+<h1>Listing Genres</h1>
+
+<%= will_paginate %>
+
+
+<ul class="users">
+	<% @genres.each do |genre| %>
+		<li>
+			<td><%= link_to genre.name, genre %> <% link_to genre %></td>
+			<%= link_to "delete", genre, method: :delete, data: { confirm: "You sure?" } %>
+	    	<%= link_to "edit", edit_genre_path(genre), class: "btn btn-large btn-primary" %>
+		</li>
+	<% end %> 
+</ul>
+
+<%= will_paginate %>
